@@ -1,17 +1,20 @@
-import React from 'react';
-import rootReducer from './store/reducers/rootReducer';
-import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { typeRootReducer, IRootReducer, typeAppReducer } from './constant/constant';
+import {Routes , Route} from 'react-router-dom'
+import { Home, Login, Public } from './containers/public';
+import { path } from './util/path';
 
 function App() {
-  const { test } = useSelector((state: IRootReducer) => state.app)
-  console.log(test)
   return (
     <>
-      <div className="text-3xl font-bold underline">Hello world!</div>
-
+      <div className="text-3xl font-bold underline">
+        <Routes>
+          <Route path={path.PUBLIC} element={<Public/>}>
+            <Route path={path.HOME} element={<Home/>}/>
+            <Route path={path.LOGIN} element={<Login/>}/>
+          </Route>
+        </Routes>
+      </div>
       <ToastContainer
         position="top-right"
         autoClose={5000}
